@@ -6,6 +6,10 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     float moveSpeed;
+    Animator anim;
+    void Awake(){
+        anim = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -14,6 +18,7 @@ public class Player : MonoBehaviour
         if(Axis != Vector3.zero){
             transform.rotation = Quaternion.LookRotation(Axis.normalized);
         }
+        anim.SetFloat("move",Mathf.Abs(Axis.normalized.magnitude));
     }
 
     Vector3 Axis
